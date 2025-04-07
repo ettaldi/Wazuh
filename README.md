@@ -68,7 +68,7 @@ chmod +x install_wazuh_agents.sh
 
 
 ## **Trouvez-moi sur**
-
+<div align="center">
 <a href="https://www.linkedin.com/in/mohamed-rayan-ettaldi-6b7501244/" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
