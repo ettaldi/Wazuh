@@ -1,4 +1,6 @@
 # **Wazuh**
+[![Bash](https://img.shields.io/badge/Bash-5.x-blue?style=for-the-badge&logo=gnubash&logoColor=white)](https://www.gnu.org/software/bash/)
+
 
 **Wazuh** est une plateforme open-source offrant des capacités de détection des menaces, de surveillance de l'intégrité des fichiers, d'analyse des journaux et de réponse aux incidents.
 
