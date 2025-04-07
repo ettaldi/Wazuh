@@ -13,19 +13,19 @@
 
 ---
 
-### **Installez Git**
+### **Clonage**
 
 #### Debian
 ```bash
 sudo apt install git -y
 ```
 
-### **Clonez le dépôt**
+#### Clonez le dépôt
 ```bash
 git clone https://github.com/ettaldi/Wazuh
 ```
 
-### **Entrez dans le répertoire**
+#### Entrez dans le répertoire
 ```bash
 cd Wazuh
 ```
