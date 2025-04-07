@@ -1,32 +1,22 @@
-# **Wazuh (SIEM)**
-
-
+# **Wazuh**
 
 **Wazuh** est une plateforme open-source offrant des capacités de détection des menaces, de surveillance de l'intégrité des fichiers, d'analyse des journaux et de réponse aux incidents.
 
 ## **Fonctionnalités**
 
-- Détection d’intrusions (IDS)
+- Détection des intrusions
 - Surveillance des fichiers et logs
-- Analyse des vulnérabilités
-- Gestion des agents sur plusieurs machines
+- Gestion des agents
 - Alertes en temps réel
-- Tableau de bord web pour visualiser les événements
 
 ---
 
-
-## **Installation**
-
-### **Installez les dépendances (Git)**
-
-### **Linux**
+### **Installez Git**
 
 #### Debian
 ```bash
 sudo apt install git -y
 ```
-
 
 ### **Clonez le dépôt**
 ```bash
@@ -38,33 +28,24 @@ git clone https://github.com/ettaldi/Wazuh
 cd Wazuh
 ```
 
-
 ## **Installation Wazuh server**
-
-### Donne-lui les droits d’exécution
 
 ```bash
 chmod +x install_wazuh_server.sh
 ```
 
-### lance-le
 ```bash
 ./install_wazuh_server.sh
 ```
 
 ## **Installation Wazuh agents**
-
-### Donne-lui les droits d’exécution
-
+> **Important :** Assurez-vous de remplir les fichiers machines_linux.txt ou machines_windows.txt avec les adresses IP des agents, en séparant chaque adresse par un espace.
 ```bash
 chmod +x install_wazuh_agents.sh
 ```
-> **Important :** N'oubliez pas de remplir les fichiers machines_linux.txt ou machines_windows.txt avec les addresses ip des agents en laissant un espace entre chacun.
-### lance-le
 ```bash
 ./install_wazuh_agents.sh
 ```
-
 
 ## **Trouvez-moi sur**
 <div align="center">
