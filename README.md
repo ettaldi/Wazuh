@@ -59,12 +59,11 @@ chmod +x install_wazuh_server.sh
 ```bash
 chmod +x install_wazuh_agents.sh
 ```
-
+> **Important :** N'oubliez pas de remplir les fichiers machines_linux.txt ou machines_windows.txt avec les addresses ip des agents en laissant un espace entre chacun.
 ### lance-le
 ```bash
 ./install_wazuh_agents.sh
 ```
-
 
 
 ## **Trouvez-moi sur**
