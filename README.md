@@ -28,7 +28,7 @@ sudo git clone https://github.com/ettaldi/Wazuh
 
 #### Entrez dans le répertoire
 ```bash
-sudo cd Wazuh
+cd Wazuh
 ```
 
 ## **Installation Wazuh server**
