@@ -48,14 +48,14 @@ sudo systemctl start ssh
 sudo ufw allow ssh
 ```
 #### Sur les machines agents
-### Linux
+##### Linux
 ```bash
 sudo apt install ufw openssh-server -y
 sudo systemctl enable ssh
 sudo systemctl start ssh
 sudo ufw allow ssh
 ```
-### Windows
+##### Windows
 ```bash
 Start-Service sshd
 Set-Service -Name sshd -StartupType 'Automatic'
