@@ -34,14 +34,14 @@ sudo cd Wazuh
 ## **Installation Wazuh server**
 
 ```bash
-sudo chmod +x install_wazuh_server.sh
-sudo ./install_wazuh_server.sh
+sudo chmod +x wazuh_server.sh
+sudo ./wazuh_server.sh
 ```
 
 ## **Installation Wazuh agents**
 ```bash
-sudo chmod +x install_wazuh_agents.sh
-sudo ./install_wazuh_agents.sh
+sudo chmod +x wazuh_agents.sh
+sudo ./wazuh_agents.sh
 ```
 > **Important :** Assurez-vous de remplir les fichiers machines_linux.txt ou machines_windows.txt avec les adresses IP des agents (chacune sur une ligne séparée).
 ## **Trouvez-moi sur**
