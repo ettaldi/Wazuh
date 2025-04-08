@@ -39,12 +39,11 @@ sudo ./install_wazuh_server.sh
 ```
 
 ## **Installation Wazuh agents**
-> **Important :** Assurez-vous de remplir les fichiers machines_linux.txt ou machines_windows.txt avec les adresses IP des agents, en séparant chaque adresse par un espace.
 ```bash
 sudo chmod +x install_wazuh_agents.sh
 sudo ./install_wazuh_agents.sh
 ```
-
+> **Important :** Assurez-vous de remplir les fichiers machines_linux.txt ou machines_windows.txt avec les adresses IP des agents (chacune sur une ligne séparée).
 ## **Trouvez-moi sur**
 <div align="center">
 <a href="https://www.linkedin.com/in/mohamed-rayan-ettaldi-6b7501244/" target="_blank">
