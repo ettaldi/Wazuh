@@ -37,7 +37,32 @@ sudo cd Wazuh
 sudo chmod +x wazuh_server.sh
 sudo ./wazuh_server.sh
 ```
-
+## **Avant l'installation Wazuh agents**
+> Avant d’installer les agents Wazuh, il est essentiel d’activer le service SSH sur la machine principale ainsi que sur toutes les machines agents (Linux et Windows). Cela permettra au script de s’exécuter correctement à distance.
+#### Sur la machine exécutant le script
+```bash
+sudo apt update
+sudo apt install ufw openssh-server sshpass -y
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo ufw allow ssh
+```
+#### Sur les machines agents
+### Linux
+```bash
+sudo apt install ufw openssh-server -y
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo ufw allow ssh
+```
+### Windows
+```bash
+Start-Service sshd
+Set-Service -Name sshd -StartupType 'Automatic'
+New-NetFirewallRule -Name "OpenSSH" -DisplayName "SSH Port 22" `
+    -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+```
+> **Important :** N'oubliez pas de fermer les ports sur votre machine et vos agents apres l'execution du script
 ## **Installation Wazuh agents**
 ```bash
 sudo chmod +x wazuh_agents.sh
