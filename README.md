@@ -38,7 +38,7 @@ sudo chmod +x wazuh_server.sh
 sudo ./wazuh_server.sh
 ```
 
-
+---
 ## **Installation Wazuh agents**
 ### **Linux**
 #### **RPM amd64**
