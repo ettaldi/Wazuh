@@ -12,7 +12,7 @@
 - Alertes en temps réel
 
 ---
-            
+> **Important :** Avant de procéder à l'installation, veuillez vérifier les prérequis matériels et le système d'exploitation, notamment pour l'intégration de Wazuh.         
 ## **Clonage**
 
 #### 
