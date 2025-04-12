@@ -93,6 +93,8 @@ sudo /Library/Ossec/bin/wazuh-control start
 curl -so wazuh-agent.pkg https://packages.wazuh.com/4.x/macos/wazuh-agent-4.11.2-1.arm64.pkg && echo "WAZUH_MANAGER='Addresse IP' && WAZUH_AGENT_GROUP='default' && WAZUH_AGENT_NAME='Nom_agent'" > /tmp/wazuh_envs && sudo installer -pkg ./wazuh-agent.pkg -target /
 sudo /Library/Ossec/bin/wazuh-control start
 ```
+
+## **Configuration**
 ## **Trouvez-moi sur**
 <div align="center">
 <a href="https://www.linkedin.com/in/mohamed-rayan-ettaldi-6b7501244/" target="_blank">
