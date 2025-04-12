@@ -56,5 +56,5 @@ bash wazuh-install.sh --wazuh-dashboard "$SERVER_NAME"
 check_success "Dashboard installé"
 
 echo ""
-echo "Mots de passe générés :"
-tar -axf wazuh-install-files.tar wazuh-install-files/wazuh-passwords.txt -O
+echo "Mots de passe générés (également enregistrés dans password.txt) :"
+tar -axf wazuh-install-files.tar wazuh-install-files/wazuh-passwords.txt -O > password.txt
