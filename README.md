@@ -36,6 +36,7 @@ cd Wazuh
 ```bash
 sudo chmod +x wazuh_server.sh
 sudo ./wazuh_server.sh
+sudo systemctl restart wazuh-manager
 ```
 
 ---
