@@ -96,6 +96,40 @@ sudo /Library/Ossec/bin/wazuh-control start
 ```
 
 ## **Configuration**
+### **File integrity monitoring**
+**File integrity monitoring** est une fonctionnalité de sécurité qui suit les modifications des fichiers sur un système. Elle détecte les modifications, ajouts ou suppressions de fichiers, ce qui permet d'identifier les menaces potentielles ou les activités non autorisées.
+#### **Manager**
+```bash
+sudo sed -i '/<\/global>/i \  <logall>yes</logall>\n  <logall_json>yes</logall_json>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
+```
+#### **Agent**
+```bash
+sudo sed -i '/<directories>\/bin,\/sbin,\/boot<\/directories>/a \ <directories check_all="yes" report_changes="yes" realtime="yes">/root</directories>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-agent
+```
+### **Vulnerability detection**
+**Vulnerability detection** est une fonction qui permet d’identifier les failles de sécurité connues dans les logiciels installés sur un système.
+#### **Manager**
+```bash
+sudo sed -i '/<\/ossec_config>/i \<vulnerability-detector>\n  <enabled>yes</enabled>\n  <provider name="canonical">\n    <enabled>yes</enabled>\n  </provider>\n</vulnerability-detector>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
+```
+#### **Agent**
+```bash
+sudo apt install -y auditd
+```
+```bash
+sudo sed -i '/<\/ossec_config>/i \<localfile>\n  <log_format>audit</log_format>\n  <location>/var/log/audit/audit.log</location>\n</localfile>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-agent
+```
+```bash
+echo -e "-a exit,always -F euid=0 -F arch=b64 -S execve -k audit-wazuh-c\n-a exit,always -F euid=0 -F arch=b32 -S execve -k audit-wazuh-c" | sudo tee -a /etc/audit/audit.rules > /dev/null
+```
+```bash
+sudo auditctl -R /etc/audit/audit.rules
+```
+### **Blocking SSH Brute force attacks**
+**Blocking SSH Brute force attacks ** c’est empêcher un attaquant de tester plusieurs mots de passe sur le service SSH en détectant ces tentatives et en bloquant automatiquement son adresse IP.
+```bash
+sudo sed -i '/<\/ossec_config>/i \<active-response>\n  <command>firewall-drop</command>\n  <location>local</location>\n  <rules_id>5763</rules_id>\n  <timeout>180</timeout>\n</active-response>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
+```
 ## **Trouvez-moi sur**
 <div align="center">
 <a href="https://www.linkedin.com/in/mohamed-rayan-ettaldi-6b7501244/" target="_blank">
