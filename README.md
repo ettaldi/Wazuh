@@ -114,16 +114,7 @@ sudo sed -i '/<\/ossec_config>/i \<vulnerability-detector>\n  <enabled>yes</enab
 ```
 #### **Agent**
 ```bash
-sudo apt install -y auditd
-```
-```bash
-sudo sed -i '/<\/ossec_config>/i \<localfile>\n  <log_format>audit</log_format>\n  <location>/var/log/audit/audit.log</location>\n</localfile>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-agent
-```
-```bash
-echo -e "-a exit,always -F euid=0 -F arch=b64 -S execve -k audit-wazuh-c\n-a exit,always -F euid=0 -F arch=b32 -S execve -k audit-wazuh-c" | sudo tee -a /etc/audit/audit.rules > /dev/null
-```
-```bash
-sudo auditctl -R /etc/audit/audit.rules
+sudo apt install -y auditd && sudo sed -i '/<\/ossec_config>/i \<localfile>\n  <log_format>audit</log_format>\n  <location>/var/log/audit/audit.log</location>\n</localfile>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-agent && echo -e "-a exit,always -F euid=0 -F arch=b64 -S execve -k audit-wazuh-c\n-a exit,always -F euid=0 -F arch=b32 -S execve -k audit-wazuh-c" | sudo tee -a /etc/audit/audit.rules > /dev/null && sudo auditctl -R /etc/audit/audit.rules
 ```
 ### **Blocking SSH Brute force attacks**
 **Blocking SSH Brute force attacks** c’est empêcher un attaquant de tester plusieurs mots de passe sur le service SSH en détectant ces tentatives et en bloquant automatiquement son adresse IP.
