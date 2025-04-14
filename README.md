@@ -41,7 +41,7 @@ sudo systemctl restart wazuh-manager
 
 ---
 ## **Installation Wazuh agents**
-> Avant d'exécuter la commande d'installation, veillez à remplacer l'adresse IP par celle de votre serveur Wazuh, à utiliser le nom d'hôte de la machine comme nom d’agent pour une meilleure identification, et choisissez un groupe (ou laissez 'default' si vous n’en avez pas).
+> Avant d'exécuter la commande d'installation, veillez à remplacer `Addresse_IP` par celle de votre serveur Wazuh, `Nom_agent` et choisissez un groupe (ou laissez `default` si vous n’en avez pas).
 ### **Linux**
 #### **RPM amd64**
 #### 
