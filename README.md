@@ -123,7 +123,7 @@ sudo apt install -y auditd && sudo sed -i '/<\/ossec_config>/i \<localfile>\n  <
 sudo sed -i '/<\/ossec_config>/i \<active-response>\n  <command>firewall-drop</command>\n  <location>local</location>\n  <rules_id>5763</rules_id>\n  <timeout>180</timeout>\n</active-response>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
 ```
 ### **Detecting Malicious files using VirusTotal**
-**Blocking SSH Brute force attacks** c’est empêcher un attaquant de tester plusieurs mots de passe sur le service SSH en détectant ces tentatives et en bloquant automatiquement son adresse IP.
+**API VirusTotal** est un outil qui permet d’analyser automatiquement des fichiers, des URL, des IP et des domaines pour détecter des malwares à l’aide des services de VirusTotal.
 #### **Manager**
 ```bash
 sudo bash -c 'cat <<EOF >> /var/ossec/etc/rules/local_rules.xml
@@ -149,6 +149,7 @@ EOF'
 ```bash
 sudo sed -i '/<\/ossec_config>/i \<integration>\n  <name>virustotal</name>\n  <api_key>clé_api_virustotal</api_key>\n  <rule_id>100200,100201</rule_id>\n  <alert_format>json</alert_format>\n</integration>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
 ```
+> N'oubliez pas de remplacer `clé_api_virustotal` par votre clé API personnelle obtenue sur votre compte VirusTotal.
 ## **Trouvez-moi sur**
 <div align="center">
 <a href="https://www.linkedin.com/in/mohamed-rayan-ettaldi-6b7501244/" target="_blank">
