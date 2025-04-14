@@ -100,7 +100,7 @@ sudo /Library/Ossec/bin/wazuh-control start
 **File integrity monitoring** est une fonctionnalité de sécurité qui suit les modifications des fichiers sur un système. Elle détecte les modifications, ajouts ou suppressions de fichiers, ce qui permet d'identifier les menaces potentielles ou les activités non autorisées.
 #### **Manager**
 ```bash
-sudo sed -i '/<\/global>/i \  <logall>yes</logall>\n  <logall_json>yes</logall_json>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
+sudo sed -i 's|<logall>no</logall>|<logall>yes</logall>|; s|<logall_json>no</logall_json>|<logall_json>yes</logall_json>|' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
 ```
 #### **Agent**
 ```bash
