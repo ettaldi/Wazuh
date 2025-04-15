@@ -156,6 +156,7 @@ sudo sed -i '/<\/ossec_config>/i \<integration>\n  <name>virustotal</name>\n  <a
 sudo apt update && sudo apt install -y postfix mailutils libsasl2-2 ca-certificates libsasl2-modules
 sudo cp /usr/share/postfix/main.cf.debian /etc/postfix/main.cf
 ```
+> Choisissez comme type de configuration mail generale : `Pas de configuration`
 ```bash
 sudo tee /etc/postfix/main.cf > /dev/null <<EOF
 smtpd_banner = \$myhostname ESMTP \$mail_name (Debian)
