@@ -104,7 +104,7 @@ sudo /Library/Ossec/bin/wazuh-control start
 curl -so wazuh-agent.pkg https://packages.wazuh.com/4.x/macos/wazuh-agent-4.11.2-1.arm64.pkg && echo "WAZUH_MANAGER='Addresse_IP' && WAZUH_AGENT_GROUP='default' && WAZUH_AGENT_NAME='Nom_agent'" > /tmp/wazuh_envs && sudo installer -pkg ./wazuh-agent.pkg -target /
 sudo /Library/Ossec/bin/wazuh-control start
 ```
-
+---
 ## **Configuration**
 ### **Surveillance de l'intégrité des fichiers**
 **Surveillance de l'intégrité des fichiers (File integrity monitoring)** est une fonctionnalité de sécurité qui suit les modifications des fichiers sur un système. Elle détecte les modifications, ajouts ou suppressions de fichiers, ce qui permet d'identifier les menaces potentielles ou les activités non autorisées.
