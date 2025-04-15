@@ -96,8 +96,8 @@ sudo /Library/Ossec/bin/wazuh-control start
 ```
 
 ## **Configuration**
-### **File integrity monitoring**
-**File integrity monitoring** est une fonctionnalité de sécurité qui suit les modifications des fichiers sur un système. Elle détecte les modifications, ajouts ou suppressions de fichiers, ce qui permet d'identifier les menaces potentielles ou les activités non autorisées.
+### **Surveillance de l'intégrité des fichiers**
+**Surveillance de l'intégrité des fichiers (File integrity monitoring)** est une fonctionnalité de sécurité qui suit les modifications des fichiers sur un système. Elle détecte les modifications, ajouts ou suppressions de fichiers, ce qui permet d'identifier les menaces potentielles ou les activités non autorisées.
 #### **Manager**
 ```bash
 sudo sed -i 's|<logall>no</logall>|<logall>yes</logall>|; s|<logall_json>no</logall_json>|<logall_json>yes</logall_json>|' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
@@ -106,8 +106,8 @@ sudo sed -i 's|<logall>no</logall>|<logall>yes</logall>|; s|<logall_json>no</log
 ```bash
 sudo sed -i '/<directories>\/bin,\/sbin,\/boot<\/directories>/a \ <directories check_all="yes" report_changes="yes" realtime="yes">/root</directories>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-agent
 ```
-### **Vulnerability detection**
-**Vulnerability detection** est une fonction qui permet d’identifier les failles de sécurité connues dans les logiciels installés sur un système.
+### **Détection des vulnérabilités**
+**Détection des vulnérabilités (Vulnerability detection)** est une fonction qui permet d’identifier les failles de sécurité connues dans les logiciels installés sur un système.
 #### **Manager**
 ```bash
 sudo sed -i '/<\/ossec_config>/i \<vulnerability-detector>\n  <enabled>yes</enabled>\n  <provider name="canonical">\n    <enabled>yes</enabled>\n  </provider>\n</vulnerability-detector>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
@@ -116,13 +116,13 @@ sudo sed -i '/<\/ossec_config>/i \<vulnerability-detector>\n  <enabled>yes</enab
 ```bash
 sudo apt install -y auditd && sudo sed -i '/<\/ossec_config>/i \<localfile>\n  <log_format>audit</log_format>\n  <location>/var/log/audit/audit.log</location>\n</localfile>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-agent && echo -e "-a exit,always -F euid=0 -F arch=b64 -S execve -k audit-wazuh-c\n-a exit,always -F euid=0 -F arch=b32 -S execve -k audit-wazuh-c" | sudo tee -a /etc/audit/audit.rules > /dev/null && sudo auditctl -R /etc/audit/audit.rules
 ```
-### **Blocking SSH Brute force attacks**
-**Blocking SSH Brute force attacks** c’est empêcher un attaquant de tester plusieurs mots de passe sur le service SSH en détectant ces tentatives et en bloquant automatiquement son adresse IP.
+### **Blocage des attaques par force brute sur SSH**
+**Blocage des attaques par force brute sur SSH** c’est empêcher un attaquant de tester plusieurs mots de passe sur le service SSH en détectant ces tentatives et en bloquant automatiquement son adresse IP.
 #### **Manager**
 ```bash
 sudo sed -i '/<\/ossec_config>/i \<active-response>\n  <command>firewall-drop</command>\n  <location>local</location>\n  <rules_id>5763</rules_id>\n  <timeout>180</timeout>\n</active-response>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
 ```
-### **Detecting Malicious files using VirusTotal**
+### **Détection de fichiers malveillants avec VirusTotal**
 **API VirusTotal** est un outil qui permet d’analyser automatiquement des fichiers, des URL, des IP et des domaines pour détecter des malwares à l’aide des services de VirusTotal.
 #### **Manager**
 ```bash
@@ -150,6 +150,8 @@ EOF'
 sudo sed -i '/<\/ossec_config>/i \<integration>\n  <name>virustotal</name>\n  <api_key>clé_api_virustotal</api_key>\n  <rule_id>100200,100201</rule_id>\n  <alert_format>json</alert_format>\n</integration>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
 ```
 > N'oubliez pas de remplacer `clé_api_virustotal` par votre clé API personnelle obtenue sur votre compte VirusTotal.
+### **Alertes par mail via un serveur SMTP**
+**Alertes par mail via un serveur SMTP** permettent d’envoyer automatiquement des emails quand une menace ou un événement de sécurité est détecté, en utilisant un serveur d’envoi.
 ## **Trouvez-moi sur**
 <div align="center">
 <a href="https://www.linkedin.com/in/mohamed-rayan-ettaldi-6b7501244/" target="_blank">
