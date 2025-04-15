@@ -74,7 +74,7 @@ sudo systemctl start wazuh-agent
 ```
 
 #### **DEB aarch64**
-> Pour les machines ARM64 sous Debian/Ubuntu.
+> Pour les machines ARM64.
 #### 
 ```bash
 wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.11.2-1_arm64.deb && sudo WAZUH_MANAGER='Addresse_IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent' dpkg -i ./wazuh-agent_4.11.2-1_arm64.deb
@@ -83,7 +83,7 @@ sudo systemctl enable wazuh-agent
 sudo systemctl start wazuh-agent
 ```
 ### **Windows**
-> Installe l’agent avec les paramètres.
+> Pour les machines Windows.
 #### 
 ```bash
 Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.11.2-1.msi -OutFile $env:tmp\wazuh-agent; msiexec.exe /i $env:tmp\wazuh-agent /q WAZUH_MANAGER='Addresse_IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent'
