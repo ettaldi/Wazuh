@@ -179,9 +179,10 @@ EOF
 ```
 ```bash
 sudo tee /etc/postfix/sasl_passwd > /dev/null <<EOF
-[smtp.gmail.com]:587 mail_source:app_password
+[smtp.gmail.com]:587 email_source:mot_de_passe_application
 EOF
 ```
+> N'oubliez pas de remplacer `email_source` par adresse e-mail source, et `mot_de_passe_application` par le mot de passe d'application généré pour l'authentification.
 ```bash
 sudo postmap /etc/postfix/sasl_passwd
 sudo chmod 400 /etc/postfix/sasl_passwd
@@ -197,8 +198,8 @@ sudo sed -i '/<global>/,/<\/global>/ {
     s|<logall_json>.*|<logall_json>yes</logall_json>|
     /<email_notification>/!a <email_notification>yes</email_notification>
     /<smtp_server>/!a <smtp_server>localhost</smtp_server>
-    /<email_from>/!a <email_from>mail_source</email_from>
-    /<email_to>/!a <email_to>mail_destinataire</email_to>
+    /<email_from>/!a <email_from>email_source</email_from>
+    /<email_to>/!a <email_to>email_destinataire</email_to>
     /<email_maxperhour>/!a <email_maxperhour>12</email_maxperhour>
     /<email_log_source>/!a <email_log_source>alerts.log</email_log_source>
     /<agents_disconnection_time>/!a <agents_disconnection_time>10m</agents_disconnection_time>
@@ -206,6 +207,7 @@ sudo sed -i '/<global>/,/<\/global>/ {
     /<update_check>/!a <update_check>yes</update_check>
 }' /var/ossec/etc/ossec.conf && sudo sudo systemctl restart wazuh-manager
 ```
+> N'oubliez pas de remplacer `email_source` par adresse e-mail source et `email_destinataire` par l'adresse email du destinataire des alertes.
 ## **Trouvez-moi sur**
 <div align="center">
 <a href="https://www.linkedin.com/in/mohamed-rayan-ettaldi-6b7501244/" target="_blank">
