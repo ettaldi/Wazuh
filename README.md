@@ -12,7 +12,7 @@
 - Alertes en temps réel
 
 ---
-> **Important :** Avant de procéder à l'installation, veuillez vérifier les prérequis matériels et le système d'exploitation, notamment pour l'intégration de Wazuh (https://documentation.wazuh.com/current/quickstart.html#requirements).    
+> **Important :** Avant de procéder à l'installation, veuillez vérifier les prérequis matériels et le système d'exploitation, notamment pour l'intégration de Wazuh : https://documentation.wazuh.com/current/quickstart.html#requirements 
 ## **Clonage**
 
 #### 
@@ -38,60 +38,70 @@ sudo chmod +x wazuh_server.sh
 sudo ./wazuh_server.sh
 sudo systemctl restart wazuh-manager
 ```
-
+> Exécute le script pour installer le serveur Wazuh et redémarre le service du serveur Wazuh pour appliquer les changements.
 ---
 ## **Installation Wazuh agents**
 > Avant d'exécuter la commande d'installation, veillez à remplacer `Addresse_IP` par celle de votre serveur Wazuh, `Nom_agent` et choisissez un groupe (ou laissez `default` si vous n’en avez pas).
 ### **Linux**
 #### **RPM amd64**
+> Télécharge le paquet RPM du Wazuh agent pour architecture x86_64.
 #### 
 ```bash
-curl -o wazuh-agent-4.11.2-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.11.2-1.x86_64.rpm && sudo WAZUH_MANAGER='Addresse IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent' rpm -ihv wazuh-agent-4.11.2-1.x86_64.rpm
+curl -o wazuh-agent-4.11.2-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.11.2-1.x86_64.rpm && sudo WAZUH_MANAGER='Addresse_IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent' rpm -ihv wazuh-agent-4.11.2-1.x86_64.rpm
 sudo systemctl daemon-reload
 sudo systemctl enable wazuh-agent
 sudo systemctl start wazuh-agent
 ```
+
 #### **DEB amd64**
+> Télécharge le paquet DEB pour architecture amd64.
 #### 
 ```bash
-wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.11.2-1_amd64.deb && sudo WAZUH_MANAGER='Addresse IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent' dpkg -i ./wazuh-agent_4.11.2-1_amd64.deb
+wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.11.2-1_amd64.deb && sudo WAZUH_MANAGER='Addresse_IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent' dpkg -i ./wazuh-agent_4.11.2-1_amd64.deb
 sudo systemctl daemon-reload
 sudo systemctl enable wazuh-agent
 sudo systemctl start wazuh-agent
 ```
+
 #### **RPM aarch64**
+> Pareil que le RPM amd64, mais pour architecture ARM64.
 #### 
 ```bash
-curl -o wazuh-agent-4.11.2-1.aarch64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.11.2-1.aarch64.rpm && sudo WAZUH_MANAGER='Addresse IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent' rpm -ihv wazuh-agent-4.11.2-1.aarch64.rpm
+curl -o wazuh-agent-4.11.2-1.aarch64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.11.2-1.aarch64.rpm && sudo WAZUH_MANAGER='Addresse_IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent' rpm -ihv wazuh-agent-4.11.2-1.aarch64.rpm
 sudo systemctl daemon-reload
 sudo systemctl enable wazuh-agent
 sudo systemctl start wazuh-agent
 ```
+
 #### **DEB aarch64**
+> Pour les machines ARM64 sous Debian/Ubuntu.
 #### 
 ```bash
-wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.11.2-1_arm64.deb && sudo WAZUH_MANAGER='Addresse IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent' dpkg -i ./wazuh-agent_4.11.2-1_arm64.deb
+wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.11.2-1_arm64.deb && sudo WAZUH_MANAGER='Addresse_IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent' dpkg -i ./wazuh-agent_4.11.2-1_arm64.deb
 sudo systemctl daemon-reload
 sudo systemctl enable wazuh-agent
 sudo systemctl start wazuh-agent
 ```
 ### **Windows**
+> Installe l’agent avec les paramètres.
 #### 
 ```bash
-Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.11.2-1.msi -OutFile $env:tmp\wazuh-agent; msiexec.exe /i $env:tmp\wazuh-agent /q WAZUH_MANAGER='Addresse IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent'
+Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.11.2-1.msi -OutFile $env:tmp\wazuh-agent; msiexec.exe /i $env:tmp\wazuh-agent /q WAZUH_MANAGER='Addresse_IP' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='Nom_agent'
 NET START WazuhSvc
 ```
 ### **macOS**
 #### **Intel**
+> Télécharge le paquet d’installation pour Mac Intel.
 #### 
 ```bash
-curl -so wazuh-agent.pkg https://packages.wazuh.com/4.x/macos/wazuh-agent-4.11.2-1.intel64.pkg && echo "WAZUH_MANAGER='Addresse IP' && WAZUH_AGENT_GROUP='default' && WAZUH_AGENT_NAME='Nom_agent'" > /tmp/wazuh_envs && sudo installer -pkg ./wazuh-agent.pkg -target /
+curl -so wazuh-agent.pkg https://packages.wazuh.com/4.x/macos/wazuh-agent-4.11.2-1.intel64.pkg && echo "WAZUH_MANAGER='Addresse_IP' && WAZUH_AGENT_GROUP='default' && WAZUH_AGENT_NAME='Nom_agent'" > /tmp/wazuh_envs && sudo installer -pkg ./wazuh-agent.pkg -target /
 sudo /Library/Ossec/bin/wazuh-control start
 ```
 #### **Apple silicon**
+> Pareil que pour Intel, mais avec un paquet adapté aux Mac M1/M2.
 #### 
 ```bash
-curl -so wazuh-agent.pkg https://packages.wazuh.com/4.x/macos/wazuh-agent-4.11.2-1.arm64.pkg && echo "WAZUH_MANAGER='Addresse IP' && WAZUH_AGENT_GROUP='default' && WAZUH_AGENT_NAME='Nom_agent'" > /tmp/wazuh_envs && sudo installer -pkg ./wazuh-agent.pkg -target /
+curl -so wazuh-agent.pkg https://packages.wazuh.com/4.x/macos/wazuh-agent-4.11.2-1.arm64.pkg && echo "WAZUH_MANAGER='Addresse_IP' && WAZUH_AGENT_GROUP='default' && WAZUH_AGENT_NAME='Nom_agent'" > /tmp/wazuh_envs && sudo installer -pkg ./wazuh-agent.pkg -target /
 sudo /Library/Ossec/bin/wazuh-control start
 ```
 
@@ -113,6 +123,7 @@ sudo sed -i '/<directories>\/bin,\/sbin,\/boot<\/directories>/a \ <directories c
 sudo sed -i '/<\/ossec_config>/i \<vulnerability-detector>\n  <enabled>yes</enabled>\n  <provider name="canonical">\n    <enabled>yes</enabled>\n  </provider>\n</vulnerability-detector>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
 ```
 #### **Agent**
+> `auditd` est utilisé pour activer la journalisation des commandes.
 ```bash
 sudo apt install -y auditd && sudo sed -i '/<\/ossec_config>/i \<localfile>\n  <log_format>audit</log_format>\n  <location>/var/log/audit/audit.log</location>\n</localfile>' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-agent && echo -e "-a exit,always -F euid=0 -F arch=b64 -S execve -k audit-wazuh-c\n-a exit,always -F euid=0 -F arch=b32 -S execve -k audit-wazuh-c" | sudo tee -a /etc/audit/audit.rules > /dev/null && sudo auditctl -R /etc/audit/audit.rules
 ```
@@ -124,6 +135,7 @@ sudo sed -i '/<\/ossec_config>/i \<active-response>\n  <command>firewall-drop</c
 ```
 ### **Détection de fichiers malveillants avec VirusTotal**
 **API VirusTotal** est un outil qui permet d’analyser automatiquement des fichiers, des URL, des IP et des domaines pour détecter des malwares à l’aide des services de VirusTotal.
+> Tu peux récupérer une clé API ici : https://www.virustotal.com/gui/join-us
 #### **Manager**
 ```bash
 sudo bash -c 'cat <<EOF >> /var/ossec/etc/rules/local_rules.xml
