@@ -200,6 +200,12 @@ sudo sed -i \
 /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
 ```
 > N'oubliez pas de remplacer `email_source` par adresse e-mail source et `email_destinataire` par l'adresse email du destinataire des alertes (vous pouvez ajouter plus).
+### **Slack**
+```bash
+sudo sed -i \
+-e '/<ossec_config>/a\  <integration>\n    <name>slack</name>\n    <hook_url>webhook_url</hook_url>\n    <alert_format>json</alert_format>\n  </integration>' \
+/var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
+```
 ## **Trouvez-moi sur**
 <div align="center">
 <a href="https://www.linkedin.com/in/mohamed-rayan-ettaldi-6b7501244/" target="_blank">
