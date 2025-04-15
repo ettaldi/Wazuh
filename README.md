@@ -1,4 +1,5 @@
-> Stage : Implémentation d'un SIEM 
+> **Stage :** Implémentation d’un SIEM avec Wazuh
+> Ce projet de stage consiste à implémenter une solution SIEM (Security Information and Event Management) complète en utilisant Wazuh, pour surveiller, détecter les menaces, et centraliser les logs d'une infrastructure (ARRG).
 # **Wazuh** 
 [![Bash](https://img.shields.io/badge/Bash-5.x-blue?style=for-the-badge&logo=gnubash&logoColor=white)]()
 
