@@ -199,7 +199,7 @@ sudo sed -i \
 -e 's|<email_to>.*</email_to>|<email_to>email_destinataire1,email_destinataire2</email_to>|g' \
 /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
 ```
-> N'oubliez pas de remplacer `email_source` par adresse e-mail source et `email_destinataire` par l'adresse email du destinataire des alertes (vous pouvez plus).
+> N'oubliez pas de remplacer `email_source` par adresse e-mail source et `email_destinataire` par l'adresse email du destinataire des alertes (vous pouvez ajouter plus).
 ## **Trouvez-moi sur**
 <div align="center">
 <a href="https://www.linkedin.com/in/mohamed-rayan-ettaldi-6b7501244/" target="_blank">
