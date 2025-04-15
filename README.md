@@ -152,6 +152,60 @@ sudo sed -i '/<\/ossec_config>/i \<integration>\n  <name>virustotal</name>\n  <a
 > N'oubliez pas de remplacer `clé_api_virustotal` par votre clé API personnelle obtenue sur votre compte VirusTotal.
 ### **Alertes par mail via un serveur SMTP**
 **Alertes par mail via un serveur SMTP** permettent d’envoyer automatiquement des emails quand une menace ou un événement de sécurité est détecté, en utilisant un serveur d’envoi.
+```bash
+sudo apt update && sudo apt install -y postfix mailutils libsasl2-2 ca-certificates libsasl2-modules
+sudo cp /usr/share/postfix/main.cf.debian /etc/postfix/main.cf
+```
+```bash
+sudo tee /etc/postfix/main.cf > /dev/null <<EOF
+smtpd_banner = \$myhostname ESMTP \$mail_name (Debian)
+biff = no
+append_dot_mydomain = no
+readme_directory = no
+compatibility_level = 3.6
+
+# Gmail SMTP relay
+relayhost = [smtp.gmail.com]:587
+smtp_use_tls = yes
+smtp_tls_security_level = encrypt
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+
+# SASL auth
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+smtp_sasl_tls_security_options = noanonymous
+EOF
+```
+```bash
+sudo tee /etc/postfix/sasl_passwd > /dev/null <<EOF
+[smtp.gmail.com]:587 mail_source:app_password
+EOF
+```
+```bash
+sudo postmap /etc/postfix/sasl_passwd
+sudo chmod 400 /etc/postfix/sasl_passwd
+sudo chown root:root /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db
+sudo chmod 0600 /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db
+sudo systemctl restart postfix
+```
+```bash
+sudo sed -i '/<global>/,/<\/global>/ {
+    s|<jsonout_output>.*|<jsonout_output>yes</jsonout_output>|
+    s|<alerts_log>.*|<alerts_log>yes</alerts_log>|
+    s|<logall>.*|<logall>yes</logall>|
+    s|<logall_json>.*|<logall_json>yes</logall_json>|
+    /<email_notification>/!a <email_notification>yes</email_notification>
+    /<smtp_server>/!a <smtp_server>localhost</smtp_server>
+    /<email_from>/!a <email_from>mail_source</email_from>
+    /<email_to>/!a <email_to>mail_destinataire</email_to>
+    /<email_maxperhour>/!a <email_maxperhour>12</email_maxperhour>
+    /<email_log_source>/!a <email_log_source>alerts.log</email_log_source>
+    /<agents_disconnection_time>/!a <agents_disconnection_time>10m</agents_disconnection_time>
+    /<agents_disconnection_alert_time>/!a <agents_disconnection_alert_time>0</agents_disconnection_alert_time>
+    /<update_check>/!a <update_check>yes</update_check>
+}' /var/ossec/etc/ossec.conf && sudo sudo systemctl restart wazuh-manager
+```
 ## **Trouvez-moi sur**
 <div align="center">
 <a href="https://www.linkedin.com/in/mohamed-rayan-ettaldi-6b7501244/" target="_blank">
