@@ -192,23 +192,14 @@ sudo chmod 0600 /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db
 sudo systemctl restart postfix
 ```
 ```bash
-sudo sed -i '/<global>/,/<\/global>/ {
-    s|<jsonout_output>.*|<jsonout_output>yes</jsonout_output>|
-    s|<alerts_log>.*|<alerts_log>yes</alerts_log>|
-    s|<logall>.*|<logall>yes</logall>|
-    s|<logall_json>.*|<logall_json>yes</logall_json>|
-    /<email_notification>/!a <email_notification>yes</email_notification>
-    /<smtp_server>/!a <smtp_server>localhost</smtp_server>
-    /<email_from>/!a <email_from>email_source</email_from>
-    /<email_to>/!a <email_to>email_destinataire</email_to>
-    /<email_maxperhour>/!a <email_maxperhour>12</email_maxperhour>
-    /<email_log_source>/!a <email_log_source>alerts.log</email_log_source>
-    /<agents_disconnection_time>/!a <agents_disconnection_time>10m</agents_disconnection_time>
-    /<agents_disconnection_alert_time>/!a <agents_disconnection_alert_time>0</agents_disconnection_alert_time>
-    /<update_check>/!a <update_check>yes</update_check>
-}' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
+sudo sed -i \
+-e 's|<email_notification>no</email_notification>|<email_notification>yes</email_notification>|' \
+-e 's|<smtp_server>.*</smtp_server>|<smtp_server>localhost</smtp_server>|' \
+-e 's|<email_from>.*</email_from>|<email_from>email_source</email_from>|' \
+-e 's|<email_to>.*</email_to>|<email_to>email_destinataire1,email_destinataire2</email_to>|g' \
+/var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
 ```
-> N'oubliez pas de remplacer `email_source` par adresse e-mail source et `email_destinataire` par l'adresse email du destinataire des alertes.
+> N'oubliez pas de remplacer `email_source` par adresse e-mail source et `email_destinataire` par l'adresse email du destinataire des alertes (vous pouvez plus).
 ## **Trouvez-moi sur**
 <div align="center">
 <a href="https://www.linkedin.com/in/mohamed-rayan-ettaldi-6b7501244/" target="_blank">
