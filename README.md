@@ -206,7 +206,7 @@ sudo sed -i '/<global>/,/<\/global>/ {
     /<agents_disconnection_time>/!a <agents_disconnection_time>10m</agents_disconnection_time>
     /<agents_disconnection_alert_time>/!a <agents_disconnection_alert_time>0</agents_disconnection_alert_time>
     /<update_check>/!a <update_check>yes</update_check>
-}' /var/ossec/etc/ossec.conf && sudo sudo systemctl restart wazuh-manager
+}' /var/ossec/etc/ossec.conf && sudo systemctl restart wazuh-manager
 ```
 > N'oubliez pas de remplacer `email_source` par adresse e-mail source et `email_destinataire` par l'adresse email du destinataire des alertes.
 ## **Trouvez-moi sur**
